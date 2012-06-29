@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!-- =============================================　　 auto ttest task　 ========================================== -->
+<project name="bugIR" default="junit and report" basedir=".">
+	<property name="output folder" value="bin" />
+	<property name="src folder" value="src" />
+	<property name="test folder" value="test" />
+	<property name="report folder" value="report" />
+	<!-- - - - - - - - - - - - - - - - - -target: test report folder init - - - - - - - - - - - - - - - - - -->
+	<target name="test init">
+		<mkdir dir="${report folder}" />
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -　target: compile- - - - - - - - - - - - - - - - - -->
+	<target name="compile">
+		<javac srcdir="${src folder}" destdir="${output folder}" />
+		<echo>compilation complete!</echo>
+	</target>
+	<!-- - - - - - - - - - - - - - - - - -target: compile test cases- - - - - - - - - - - - - - - - - -->
+	<target name="test compile" depends="test init">
+		<javac srcdir="${test folder}" destdir="${output folder}" />
+		<echo>test compilation complete!</echo>
+	</target>
+	<target name="all compile" depends="compile, test compile">
+	</target>
+	<!-- =========================target: auto test all test case and output report file　======================== -->
+	<target name="junit and report" depends="all compile">
+		<junit printsummary="on" fork="true" showoutput="true">
+			<classpath>
+				<fileset dir="libs" includes="**/*.jar" />
+				<pathelement path="${output folder}" />
+			</classpath>
+			<formatter type="xml" />
+			<batchtest todir="${report folder}">
+				<fileset dir="${output folder}">
+					<include name="**/*Test.*" />
+				</fileset>
+			</batchtest>
+		</junit>
+		<junitreport todir="${report folder}">
+			<fileset dir="${report folder}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${report folder}" />
+		</junitreport>
+	</target>
+</project>
+
