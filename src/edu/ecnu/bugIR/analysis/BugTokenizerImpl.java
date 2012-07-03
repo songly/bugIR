@@ -32,6 +32,9 @@ import edu.ecnu.bugIR.util.TestLoggerFactory;
 @SuppressWarnings("deprecation")
 public class BugTokenizerImpl implements BugTokenizerInterface {
 
+    /* （非 Javadoc）
+     * @see edu.ecnu.bugIR.analysis.BugTokenizerInterface#tokenizeDoc(java.lang.String)
+     */
     @Override
     public List<String> tokenizeDoc(String doc) {
         Logger logger=TestLoggerFactory.getLogger();
@@ -56,7 +59,7 @@ public class BugTokenizerImpl implements BugTokenizerInterface {
             result = new StandardFilter(result);
             //转换为小写
             result = new LowerCaseFilter(result);
-            // 用 porter 算法进行stemming   
+            // 用 porter/Snowball 算法进行stemming   
             //result = new PorterStemFilter(result);  
             result = new SnowballFilter(result, new EnglishStemmer());
 
@@ -67,7 +70,8 @@ public class BugTokenizerImpl implements BugTokenizerInterface {
             boolean hasnext = result.incrementToken();
             while (hasnext) {
                 TermAttribute ta = result.getAttribute(TermAttribute.class);
-                System.out.println(ta.term());
+                //System.out.println(ta.term());
+                tokens.add(ta.term());
                 hasnext = result.incrementToken();
             }
         }
