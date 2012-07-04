@@ -8,7 +8,7 @@ import java.util.List;
  * @version: 1.0 
  * @modify: 
  */
-public interface BugTokenizerInterface {
+public interface BugTokenizer {
 
     /**
      * 对文档进行分词处理，返回tokens列表

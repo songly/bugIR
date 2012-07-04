@@ -17,4 +17,20 @@ public class DocFrequency {
      */
     private int frequency;
 
+    public int getBugId() {
+        return bugId;
+    }
+
+    public void setBugId(int bugId) {
+        this.bugId = bugId;
+    }
+
+    public int getFrequency() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
+    }
+
 }

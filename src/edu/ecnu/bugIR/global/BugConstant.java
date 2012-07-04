@@ -38,7 +38,9 @@ public class BugConstant {
         "no", "not", "of", "on", "or", "such",
         "that", "the", "their", "then", "there", "these",
         "they", "this", "to", "was", "will", "with","bug","work",
-        "1","2","3","4","5","6","7","8","9","10"
+        "1","2","3","4","5","6","7","8","9","10","?","i","you",
+        "meego","fix","problem","what","from","can","should","have"
+        
       );
       final CharArraySet stopSet = new CharArraySet(Version.LUCENE_CURRENT, 
           stopWords.size(), false);

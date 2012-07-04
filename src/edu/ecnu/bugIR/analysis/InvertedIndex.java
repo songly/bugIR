@@ -12,7 +12,7 @@ import edu.ecnu.bugIR.analysis.model.TermEnum;
  * @version: 1.0 
  * @modify: 
  */
-public interface InvertedIndexInterface {
+public interface InvertedIndex {
     
     /**
      * Sort by terms

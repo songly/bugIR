@@ -9,6 +9,7 @@ import org.apache.lucene.analysis.LowerCaseFilter;
 import org.apache.lucene.analysis.StopAnalyzer;
 import org.apache.lucene.analysis.StopFilter;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.TypeTokenFilter;
 import org.apache.lucene.analysis.snowball.SnowballFilter;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.standard.StandardFilter;
@@ -30,7 +31,7 @@ import edu.ecnu.bugIR.util.TestLoggerFactory;
  * @modify: 
  */
 @SuppressWarnings("deprecation")
-public class BugTokenizerImpl implements BugTokenizerInterface {
+public class BugTokenizerImpl implements BugTokenizer {
 
     /* （非 Javadoc）
      * @see edu.ecnu.bugIR.analysis.BugTokenizerInterface#tokenizeDoc(java.lang.String)
@@ -67,6 +68,9 @@ public class BugTokenizerImpl implements BugTokenizerInterface {
             if (BugConstant.ENGLISH_STOP_WORDS_SET != null)
                 result = new StopFilter(StopFilter.getEnablePositionIncrementsVersionDefault(Version.LUCENE_36), result,
                         BugConstant.ENGLISH_STOP_WORDS_SET);
+           //过滤数字等
+           result=new TypeTokenFilter(false, result, BugConstant.STOP_TYPES);
+            
             boolean hasnext = result.incrementToken();
             while (hasnext) {
                 TermAttribute ta = result.getAttribute(TermAttribute.class);

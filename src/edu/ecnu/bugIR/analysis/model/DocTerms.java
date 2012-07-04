@@ -1,5 +1,6 @@
 package edu.ecnu.bugIR.analysis.model;
 
+import java.util.Collections;
 import java.util.List;
 
 /** 
@@ -8,7 +9,7 @@ import java.util.List;
  * @version: 1.0 
  * @modify: 
  */
-public class DocTerms {
+public class DocTerms implements Comparable<DocTerms> {
     /**
      * bug文档编号
      */
@@ -24,7 +25,16 @@ public class DocTerms {
      * 相应文档中的token组成的列表
      */
     private List<String> termList;
+       
+    /**
+     * 按照字典序进行排序
+     */
+    public void SortTermList(){
+        Collections.sort(termList);
+    }
+
     
+
     public int getBugDocId() {
         return bugDocId;
     }
@@ -42,6 +52,18 @@ public class DocTerms {
     }
     public void setTermList(List<String> termList) {
         this.termList = termList;
+    }
+
+    @Override
+    public int compareTo(DocTerms o) {
+        // 根据bugId升序
+        if(this.getBugDocId()<o.getBugDocId()){
+            return -1;
+        }
+        else if(this.getBugDocId()>o.getBugDocId()){
+            return 1;
+        }
+        return 0;
     }
 
 }
