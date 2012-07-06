@@ -31,15 +31,15 @@ public interface InvertedIndex {
      * @param docTermList
      * @return
      */
-    public List<TermDocs> generateIndex(List<DocTerms> docTermList);
+    public List<TermDocs> generateIndexList(List<DocTerms> docTermList);
     
     /**
-     * 返回指定域的倒排词索引
+     * 返回倒排词索引
      * @param docTermList
      * @param field
      * @return
      */
-    public TermEnum generateIndex(List<DocTerms> docTermList,int field);
+    public TermEnum generateIndex(List<DocTerms> docTermList);
     
 
 }

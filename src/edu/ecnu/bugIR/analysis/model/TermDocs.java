@@ -1,5 +1,6 @@
 package edu.ecnu.bugIR.analysis.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /** 
@@ -8,11 +9,15 @@ import java.util.List;
  * @version: 1.0 
  * @modify: 
  */
-public class TermDocs {
+public class TermDocs implements Serializable {
+    /**
+     * TODO 添加字段注释
+     */
+    private static final long serialVersionUID = -7302085266482959276L;
     /**
      * Term
      */
-    private String term;
+    private Term term;
     /**
      * Term在所有doc中出现的次数
      */
@@ -22,12 +27,19 @@ public class TermDocs {
      */
     private List<DocFrequency> docs;
     
-    public String getTerm() {
+    public TermDocs(String term) {
+        super();
+        this.term = new Term(term);
+    }
+
+    public Term getTerm() {
         return term;
     }
-    public void setTerm(String term) {
+
+    public void setTerm(Term term) {
         this.term = term;
     }
+
     public int getFrequency() {
         int count=0;
         for(DocFrequency doc:docs){
@@ -51,6 +63,10 @@ public class TermDocs {
         }
         sb.append("]"+"\n");
         return sb.toString();
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency = frequency;
     }
 
 }

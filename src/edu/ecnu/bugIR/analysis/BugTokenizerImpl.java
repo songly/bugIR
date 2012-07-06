@@ -1,6 +1,7 @@
 package edu.ecnu.bugIR.analysis;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
